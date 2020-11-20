@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="GPS_mount_link">
+  
+  <link name="GPS_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://custom_jackal_description/meshes/carma/GPS_Assembly.dae" scale="1 1 1"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="${PI/2} 0 ${PI/2}" />
+        <material name="white" />
+      </visual>
+    </link>
+
+    <joint name="GPS_joint" type="fixed">
+      <origin xyz="${-GPS_alignment_length} 0 +0.09" rpy="0 0 0" />
+      <parent link="top_box_link" />
+      <child link="GPS_link" />
+   </joint>
+
+  <link name="base_ned">
+    </link>
+    
+    <joint name="base_ned_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="GPS_link" />
+      <child link="base_ned" />
+   </joint>
+
+
+
+</robot>
